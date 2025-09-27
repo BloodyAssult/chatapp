@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.*?>
+<?import javafx.collections.FXCollections?>
+
+<BorderPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="org.danial.chatapp.controller.MainController">
+
+    <!-- Sidebar -->
+    <left>
+        <VBox spacing="10" styleClass="sidebar" prefWidth="200" alignment="TOP_CENTER">
+            <Button text="گفتگوی جدید" onAction="#newChat"/>
+            <ListView fx:id="chatList">
+                <items>
+                    <FXCollections fx:factory="observableArrayList">
+                        <String fx:value="مکالمه ۱"/>
+                        <String fx:value="مکالمه ۲"/>
+                    </FXCollections>
+                </items>
+            </ListView>
+            <Button text="تنظیمات" onAction="#openSettings"/>
+        </VBox>
+    </left>
+
+    <!-- Main Chat Area -->
+    <center>
+        <VBox fx:id="chatArea" spacing="10" padding="10">
+            <Label text="سلام دانیال، این تست رابط کاربری مدرن هست" styleClass="chat-bubble-user"/>
+            <Label text="سلام! من مدل GPT-5 هستم و آماده پاسخ طولانی‌ام" styleClass="chat-bubble-ai"/>
+        </VBox>
+    </center>
+
+    <!-- Message Input Bar -->
+    <bottom>
+        <HBox spacing="10" padding="10" alignment="CENTER_RIGHT">
+            <TextField fx:id="messageField" promptText="پیام خود را اینجا بنویسید..." prefWidth="600"/>
+            <Button text="ارسال" onAction="#sendMessage"/>
+        </HBox>
+    </bottom>
+</BorderPane>
