@@ -21,10 +21,11 @@
             <version>25</version>
         </dependency>
         <!-- AvalAI API Client (OpenAI-compatible) -->
+
         <dependency>
-            <groupId>com.aallam.openai</groupId>
-            <artifactId>openai-client</artifactId>
-            <version>4.0.1</version>
+            <groupId>com.openai</groupId>
+            <artifactId>openai-java</artifactId>
+            <version>3.7.1</version>
         </dependency>
         <!-- Google Custom Search API -->
         <dependency>

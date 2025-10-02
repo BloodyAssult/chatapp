@@ -1,0 +1,190 @@
+/* فونت وزیر برای راست‌چین فارسی (مسیر رو چک کن) */
+@font-face {
+    font-family: "Vazir";
+    src: url("../fonts/Vazirmatn.ttf");
+}
+
+/* پس‌زمینه کلی سفید روشن شیشه‌ای */
+.root {
+    -fx-background-color: linear-gradient(to bottom, #F0F8FF, #FFFFFF); /* سفید روشن گرادیانتی ملایم */
+    -fx-font-family: "Vazir"; /* فونت پیش‌فرض */
+}
+
+/* نوار کناری (شیشه‌ای روی سفید) */
+.sidebar {
+    -fx-background-color: rgba(255, 255, 255, 0.85); /* شفافیت بالا برای شیشه‌ای */
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 10, 0, 0, 5); /* سایه ظریف */
+    -fx-padding: 10;
+    -fx-border-radius: 10;
+}
+
+/* کارت‌های پیام کاربر (شما): جمع و جور، اندازه کنترل‌شده، بدون border بدقواره */
+.chat-bubble-user {
+    -fx-background-color: transparent; /* background اصلی شفاف برای اعمال روی .content */
+    -fx-background-radius: 10; /* گرد کردن لبه‌ها */
+    -fx-padding: 0; /* حذف padding خارجی */
+    -fx-text-fill: white; /* متن سفید */
+    -fx-opacity: 0.85; /* شفافیت شیشه‌ای */
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 5, 0, 0, 2); /* سایه برای عمق */
+    -fx-font-family: "Vazir";
+    -fx-font-size: 14px;
+    -fx-alignment: CENTER_RIGHT; /* راست‌چین برای فارسی */
+    -fx-border-width: 0;
+    -fx-border-color: transparent;
+    -fx-background-insets: 0;
+    -fx-control-inner-background: transparent;
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+    -fx-pref-height: -1; /* auto-fit بر اساس متن (از جستجو: جلوگیری از دراز شدن) */
+    -fx-max-height: 100px; /* محدود کردن حداکثر ارتفاع برای جمع و جور بودن (تنظیم کن اگر لازم) */
+    -fx-min-height: 30px; /* حداقل ارتفاع برای کوچک بودن */
+    fx-pref-row-count: 1; /* اولیه: 1 ردیف (با listener grow می‌کنه) */
+        -fx-overflow: hidden; /* جلوگیری از cut شدن متن طولانی */
+        -fx-pref-column-count: 40; /* اولیه ستون‌ها (با listener تنظیم می‌شه) */
+}
+
+/* لایه داخلی برای کاربر: گرادیانت و حذف border/اندازه بزرگ */
+.chat-bubble-user .content {
+    -fx-background-color: linear-gradient(to right, #3C8CE7, #00EAFF); /* گرادیانت آبی روشن (رنگی مثل قبلی) */
+    -fx-background-radius: 10;
+    -fx-padding: 5 10 5 10; /* padding داخلی حداقل برای متن */
+    -fx-border-style: none; /* حذف کامل border بدقواره */
+    -fx-border-width: 0;
+    -fx-border-color: transparent;
+    -fx-background-insets: 0;
+}
+
+/* viewport برای جلوگیری از اندازه اضافی */
+.chat-bubble-user .viewport {
+    -fx-background-color: transparent;
+}
+
+/* کارت‌های پیام AI: مشابه برای AI */
+.chat-bubble-ai {
+    -fx-background-color: transparent;
+    -fx-background-radius: 10;
+    -fx-padding: 0;
+    -fx-text-fill: white;
+    -fx-opacity: 0.85;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 5, 0, 0, 2);
+    -fx-font-family: "Vazir";
+    -fx-font-size: 14px;
+    -fx-alignment: CENTER_LEFT;
+    -fx-border-width: 0;
+    -fx-border-color: transparent;
+    -fx-background-insets: 0;
+    -fx-control-inner-background: transparent;
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+    -fx-pref-height: -1;
+    -fx-max-height: 100px;
+    -fx-min-height: 30px;
+    -fx-pref-row-count: 1;
+        -fx-overflow: hidden;
+        -fx-pref-column-count: 40;
+}
+
+/* لایه داخلی برای AI */
+.chat-bubble-ai .content {
+    -fx-background-color: linear-gradient(to right, #A9A9A9, #696969); /* گرادیانت مشکی/خاکستری */
+    -fx-background-radius: 10;
+    -fx-padding: 5 10 5 10;
+    -fx-border-style: none;
+    -fx-border-width: 0;
+    -fx-border-color: transparent;
+    -fx-background-insets: 0;
+}
+
+.chat-bubble-ai .viewport {
+    -fx-background-color: transparent;
+}
+
+/* hover effects برای کارت‌ها */
+.chat-bubble-user:hover, .chat-bubble-ai:hover {
+    -fx-scale-x: 1.03;
+    -fx-scale-y: 1.03;
+    -fx-effect: dropshadow(gaussian, rgba(255,255,255,0.5), 10, 0, 0, 0);
+}
+
+/* ورودی پیام: جمع و جور با کنترل اندازه */
+.text-field {
+    -fx-background-color: rgba(255, 255, 255, 0.9);
+    -fx-prompt-text-fill: gray;
+    -fx-text-fill: black;
+    -fx-padding: 0;
+    -fx-border-radius: 5px;
+    -fx-border-width: 0;
+    -fx-border-color: transparent;
+    -fx-background-insets: 0;
+    -fx-control-inner-background: white;
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+    -fx-pref-height: -1; /* auto-fit */
+    -fx-max-height: 50px; /* محدود برای جلوگیری از دراز شدن */
+    -fx-min-height: 30px;
+    -fx-pref-rows: 1; /* شروع با ۱ سطر (از جستجو: تعیین اندازه اولیه) */
+}
+
+/* لایه داخلی برای ورودی */
+.text-field .content {
+    -fx-padding: 5px;
+    -fx-border-style: none;
+    -fx-border-width: 0;
+    -fx-background-color: transparent;
+}
+
+.text-field .viewport {
+    -fx-background-color: transparent;
+}
+
+/* کادر ورودی (برای مدرن بودن) */
+.hbox-input {
+    -fx-background-color: rgba(255, 255, 255, 0.9);
+    -fx-padding: 10;
+    -fx-border-radius: 5;
+    -fx-spacing: 5;
+}
+
+/* دکمه‌ها: آبی روشن با hover */
+.button {
+    -fx-background-radius: 6px;
+    -fx-font-family: "Vazir";
+    -fx-padding: 8px 15px;
+    -fx-font-size: 14px;
+    -fx-background-color: #ADD8E6;
+    -fx-text-fill: white;
+    -fx-background-radius: 5;
+}
+
+.button:hover {
+    -fx-background-color: #00BFFF;
+}
+
+/* استایل مدرن برای ScrollPane (thin, transparent, rounded scrollbar) */
+.scroll-pane {
+    -fx-background-color: transparent;
+}
+
+.scroll-pane .scroll-bar:vertical, .scroll-pane .scroll-bar:horizontal {
+    -fx-background-color: transparent;
+}
+
+.scroll-pane .scroll-bar:vertical .thumb, .scroll-pane .scroll-bar:horizontal .thumb {
+    -fx-background-color: rgba(0, 0, 0, 0.3);
+    -fx-background-radius: 5;
+    -fx-background-insets: 2, 0, 0;
+}
+
+.scroll-pane .scroll-bar:vertical .track, .scroll-pane .scroll-bar:horizontal .track {
+    -fx-background-color: transparent;
+    -fx-opacity: 0.2;
+}
+
+.scroll-pane .scroll-bar .increment-button, .scroll-pane .scroll-bar .decrement-button {
+    -fx-opacity: 0;
+}
+/* برای تصاویر (اگر اضافه کردی): ریسپانسیو با ارتفاع auto */
+.image-view {
+    -fx-fit-height: -1; /* auto بر اساس محتوا (از seo90.ir) */
+    -fx-preserve-ratio: true;
+}

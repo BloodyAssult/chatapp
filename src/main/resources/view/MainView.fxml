@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.geometry.*?>
 <?import javafx.collections.FXCollections?>
 
-<BorderPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+<BorderPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="org.danial.chatapp.controller.MainController">
 
     <!-- Sidebar -->
@@ -26,17 +27,27 @@
 
     <!-- Main Chat Area -->
     <center>
-        <VBox fx:id="chatArea" spacing="10" padding="10">
-            <Label text="سلام دانیال، این تست رابط کاربری مدرن هست" styleClass="chat-bubble-user"/>
-            <Label text="سلام! من مدل GPT-5 هستم و آماده پاسخ طولانی‌ام" styleClass="chat-bubble-ai"/>
-        </VBox>
+        <ScrollPane styleClass="scroll-pane" fx:id="chatScrollPane" fitToWidth="true" pannable="true">
+            <content>
+                <VBox fx:id="chatArea" spacing="10" nodeOrientation="RIGHT_TO_LEFT"> <!-- راست‌چین برای پیام‌ها -->
+                    <padding>
+                        <Insets top="10" right="10" bottom="10" left="10"/>
+                    </padding>
+                    <TextArea text="سلام دانیال، این تست رابط کاربری مدرن هست" styleClass="chat-bubble-user" wrapText="true" editable="false" prefRowCount="1" prefHeight="-1" maxHeight="100"/> <!-- اندازه کنترل‌شده -->
+                    <TextArea text="سلام! من مدل GPT-5 هستم و آماده پاسخ طولانی‌ام" styleClass="chat-bubble-ai" wrapText="true" editable="false" prefRowCount="1" prefHeight="-1" maxHeight="100"/>
+                </VBox>
+            </content>
+        </ScrollPane>
     </center>
 
     <!-- Message Input Bar -->
     <bottom>
-        <HBox spacing="10" padding="10" alignment="CENTER_RIGHT">
-            <TextField fx:id="messageField" promptText="پیام خود را اینجا بنویسید..." prefWidth="600"/>
-            <Button text="ارسال" onAction="#sendMessage"/>
+        <HBox styleClass="hbox-input" spacing="10" alignment="CENTER_RIGHT" nodeOrientation="RIGHT_TO_LEFT">
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10"/>
+            </padding>
+            <TextArea styleClass="text-field" fx:id="messageField" promptText="پیام خود را اینجا بنویسید..." HBox.hgrow="ALWAYS" nodeOrientation="RIGHT_TO_LEFT" wrapText="true" prefRowCount="1" prefHeight="-1" maxHeight="50"/> <!-- اندازه کنترل‌شده برای ورودی -->
+            <Button styleClass="button" text="ارسال" onAction="#sendMessage"/>
         </HBox>
     </bottom>
 </BorderPane>

@@ -8,7 +8,8 @@
       </list>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" project-jdk-name="openjdk-25" project-jdk-type="JavaSDK">
-    <output url="file://$PROJECT_DIR$/out" />
+  <component name="ProjectResources">
+    <resource url="http://javafx.com/fxml/1" location="$MAVEN_REPOSITORY$/org/openjfx/javafx-fxml/25/javafx-fxml-25.jar!/org/javafx/fxml/fxml-1.xsd" />
   </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_25" default="true" project-jdk-name="openjdk-25" project-jdk-type="JavaSDK" />
 </project>
