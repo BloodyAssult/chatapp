@@ -96,4 +96,12 @@ public class AvalAIService {
             LOG.log(Level.WARNING, "Error while closing client: " + e.getMessage(), e);
         }
     }
+    private String currentModel = "gpt-oss-120b";
+
+    public void setModel(String model) {
+        this.currentModel = model;
+        // اگر نیاز باشه، client رو بروز کن (مثل اگر API key تغییر کرد)
+    }
+    // در sendToAvalAI، از currentModel استفاده کن (به جای selectedModel سخت‌کد شده)
+    
 }

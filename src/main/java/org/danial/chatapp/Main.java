@@ -4,7 +4,9 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import org.danial.chatapp.controller.MainController;
 
 import java.io.IOException;
@@ -13,14 +15,16 @@ import java.net.URL;
 public class Main extends Application {
 
     @Override
-    public void start(Stage primaryStage) {
+    public void start(Stage primaryStage) throws Exception {
         try {
             // بارگذاری فایل FXML
             FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("/view/MainView.fxml"));
             Parent root = fxmlloader.load();
 
             // صحنه با اندازه اولیه
-            Scene scene = new Scene(root);
+            Scene scene = new Scene(root, 800, 600);
+            scene.setFill(Color.TRANSPARENT);
+
 
             // بارگذاری CSS
             URL cssUrl = getClass().getResource("/css/style.css");
@@ -32,6 +36,10 @@ public class Main extends Application {
 
             // تنظیم مشخصات پنجره (فقط یک بار)
             primaryStage.setTitle("🤖 AvalAI Chat Client");
+            primaryStage.initStyle(StageStyle.DECORATED);
+            primaryStage.setOpacity(0.95);
+            primaryStage.setMinWidth(600);
+            primaryStage.setMinHeight(400);
             primaryStage.setScene(scene);
             primaryStage.show();
 
@@ -51,6 +59,8 @@ public class Main extends Application {
     }
 
     public static void main(String[] args) {
+            // verbose logs (برای دیباگ)
+        Application.launch(Main.class, args);
         launch(args);
     }
 }

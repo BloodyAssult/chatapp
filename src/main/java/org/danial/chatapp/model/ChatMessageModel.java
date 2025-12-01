@@ -1,5 +1,6 @@
 package org.danial.chatapp.model;
 
+
 public class ChatMessageModel {
     private String sender;
     private String content;
