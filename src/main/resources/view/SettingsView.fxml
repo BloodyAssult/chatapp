@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="org.danial.chatapp.controller.SettingsController"
+      spacing="15" alignment="CENTER" style="-fx-padding: 20; -fx-background-color: #F5F5F5;">
+    <Label text="تنظیمات" style="-fx-font-size: 18; -fx-font-weight: bold;"/>
+    <!-- انتخاب مدل AI -->
+    <Label text="مدل AI:"/>
+    <ComboBox fx:id="modelComboBox" promptText="مدل را انتخاب کنید" style="-fx-pref-width: 200;"/>
+
+    <!-- کلید API AvalAI/OpenAI -->
+    <Label text="کلید API (AvalAI/OpenAI):"/>
+    <TextArea fx:id="apiKeyField" promptText="کلید API را وارد کنید" style="-fx-pref-width: 300;"/>
+
+    <!-- کلید جستجوی گوگل -->
+    <Label text="کلید جستجوی گوگل"/>
+    <TextField fx:id="googleKeyField" promptText="کلید جستجو را وارد کنید" style="-fx-pref-width: 300;"/>
+
+    <!-- دکمه ذخیره -->
+    <Button text="ذخیره تنطیمات" onAction="#saveSettings" style="-fx-background-color: #3C8CE7; -fx-text-fill: white;"/>
+</VBox>

@@ -5,49 +5,56 @@
 <?import javafx.scene.control.*?>
 <?import javafx.geometry.*?>
 <?import javafx.collections.FXCollections?>
+<?import javafx.scene.effect.GaussianBlur?>
 
-<BorderPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="org.danial.chatapp.controller.MainController">
+<StackPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+           fx:controller="org.danial.chatapp.controller.MainController">
+    <BorderPane fx:id="chatPane" style="-fx-background-color: #F5F5F5;"> <!-- رنگ سیمانی، شیشه‌ای با blur در کد -->
+        <top>
+            <HBox alignment="CENTER_LEFT" spacing="10" style="-fx-background-color: #F0F8FF; -fx-padding: 10;">
+                <Button fx:id="hamburgerButton" text="☰" onAction="#toggleSidebar" style="-fx-font-size: 20; -fx-background-color: grey;"/>
+                <Label text="AvalAI Chat" style="-fx-font-size: 18; -fx-font-weight:bold; -fx-padding: 0 10;" />
+                <Region HBox.hgrow="ALWAYS" /> <!-- جدید: spacer برای هل دادن ComboBox به سمت راست -->
+                <ComboBox fx:id="modelSelector" promptText="انتخاب مدل" style="-fx-font-size: 14; -fx-background-color: linear-gradient(to right, #3C8CE7, #00EAFF); -fx-text-fill: white;" /> <!-- جدید: ComboBox برای مدل‌ها -->
+            </HBox>
+        </top>
+        <!-- Sidebar (اول مخفی و unmanaged برای full-width چت) -->
+        <left>
+            <VBox fx:id="sidebar" spacing="10" styleClass="sidebar" minWidth="250" prefWidth="250" translateX="-250" alignment="TOP_CENTER" visible="false" managed="false"> <!-- managed=false برای عدم اشغال فضا اول -->
+                <Button text="گفتگوی جدید" onAction="#newChat"/>
+                <ListView fx:id="chatList" prefHeight="300" /> <!-- بدون items نمونه - با کد پر می‌شه -->
+                <Button text="تنظیمات" onAction="#openSettings"/>
+            </VBox>
+        </left>
 
-    <!-- Sidebar -->
-    <left>
-        <VBox spacing="10" styleClass="sidebar" prefWidth="200" alignment="TOP_CENTER">
-            <Button text="گفتگوی جدید" onAction="#newChat"/>
-            <ListView fx:id="chatList">
-                <items>
-                    <FXCollections fx:factory="observableArrayList">
-                        <String fx:value="مکالمه ۱"/>
-                        <String fx:value="مکالمه ۲"/>
-                    </FXCollections>
-                </items>
-            </ListView>
-            <Button text="تنظیمات" onAction="#openSettings"/>
-        </VBox>
-    </left>
+        <!-- Main Chat Area -->
+        <center>
+            <ScrollPane styleClass="scroll-pane" fx:id="chatScrollPane" fitToWidth="true" pannable="true">
+                <content>
+                    <VBox fx:id="chatArea" spacing="10" nodeOrientation="RIGHT_TO_LEFT">
+                        <padding>
+                            <Insets top="10" right="10" bottom="10" left="10"/>
+                        </padding>
+                    </VBox>
+                </content>
+            </ScrollPane>
+        </center>
 
-    <!-- Main Chat Area -->
-    <center>
-        <ScrollPane styleClass="scroll-pane" fx:id="chatScrollPane" fitToWidth="true" pannable="true">
-            <content>
-                <VBox fx:id="chatArea" spacing="10" nodeOrientation="RIGHT_TO_LEFT"> <!-- راست‌چین برای پیام‌ها -->
-                    <padding>
-                        <Insets top="10" right="10" bottom="10" left="10"/>
-                    </padding>
-                    <TextArea text="سلام دانیال، این تست رابط کاربری مدرن هست" styleClass="chat-bubble-user" wrapText="true" editable="false" prefRowCount="1" prefHeight="-1" maxHeight="100"/> <!-- اندازه کنترل‌شده -->
-                    <TextArea text="سلام! من مدل GPT-5 هستم و آماده پاسخ طولانی‌ام" styleClass="chat-bubble-ai" wrapText="true" editable="false" prefRowCount="1" prefHeight="-1" maxHeight="100"/>
-                </VBox>
-            </content>
-        </ScrollPane>
-    </center>
-
-    <!-- Message Input Bar -->
-    <bottom>
-        <HBox styleClass="hbox-input" spacing="10" alignment="CENTER_RIGHT" nodeOrientation="RIGHT_TO_LEFT">
-            <padding>
-                <Insets top="10" right="10" bottom="10" left="10"/>
-            </padding>
-            <TextArea styleClass="text-field" fx:id="messageField" promptText="پیام خود را اینجا بنویسید..." HBox.hgrow="ALWAYS" nodeOrientation="RIGHT_TO_LEFT" wrapText="true" prefRowCount="1" prefHeight="-1" maxHeight="50"/> <!-- اندازه کنترل‌شده برای ورودی -->
-            <Button styleClass="button" text="ارسال" onAction="#sendMessage"/>
-        </HBox>
-    </bottom>
-</BorderPane>
+        <!-- Message Input Bar -->
+        <bottom>
+            <HBox styleClass="hbox-input" spacing="10" alignment="CENTER_RIGHT" nodeOrientation="RIGHT_TO_LEFT">
+                <padding>
+                    <Insets top="10" right="10" bottom="10" left="10"/>
+                </padding>
+                <!-- Input field -->
+                <TextArea styleClass="text-field"
+                          fx:id="messageField"
+                          promptText="پیام خود را اینجا بنویسید..."
+                          HBox.hgrow="ALWAYS"
+                          nodeOrientation="RIGHT_TO_LEFT"
+                          wrapText="true"/>
+                <Button styleClass="button" text="ارسال" onAction="#sendMessage"/>
+            </HBox>
+        </bottom>
+    </BorderPane>
+</StackPane>
